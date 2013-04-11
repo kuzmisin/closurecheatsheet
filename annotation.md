@@ -90,7 +90,7 @@ Foo.B = 'text';
  */
 
 /**
- * @param {Array.<Array.<string>>} Items ara Array of strings
+ * @param {Array.<Array.<string>>} Items in array are Arrays of strings
  */
 ```
 
