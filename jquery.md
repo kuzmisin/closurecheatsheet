@@ -1,11 +1,11 @@
 ## DOM
 
-### Pseudo :first, :last
+### :first, :last
 ```html
 <ul id="menu">
 	<li>Item 1</li>
-	<li>Item 1</li>
-	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3</li>
 </ul>
 ```
 ```javascript
@@ -22,6 +22,24 @@ var menuLi = goog.dom.getElementsByTagNameAndClass(
 
 var firstItem = menuLi[0],
 	lastItem =  menuLi[menuLi.length - 1];
+```
+
+### .prepend()
+```html
+<ul id="menu">
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3</li>
+</ul>
+```
+```javascript
+	// jQuery
+	$('#menu').prepend('<li>Item 0</li>');
+
+	// closure
+	var menu = goog.dom.getElement('menu');
+	var newItem = goog.dom.createDom('li', undefined, 'Item 0');
+	goog.dom.insertChildAt(menu, newItem, 0);
 ```
 
 ## Event
