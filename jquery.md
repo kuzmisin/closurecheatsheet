@@ -33,13 +33,13 @@ var firstItem = menuLi[0],
 </ul>
 ```
 ```javascript
-	// jQuery
-	$('#menu').prepend('<li>Item 0</li>');
+// jQuery
+$('#menu').prepend('<li>Item 0</li>');
 
-	// closure
-	var menu = goog.dom.getElement('menu');
-	var newItem = goog.dom.createDom('li', undefined, 'Item 0');
-	goog.dom.insertChildAt(menu, newItem, 0);
+// closure
+var menu = goog.dom.getElement('menu');
+var newItem = goog.dom.createDom('li', undefined, 'Item 0');
+goog.dom.insertChildAt(menu, newItem, 0);
 ```
 
 ## Event
