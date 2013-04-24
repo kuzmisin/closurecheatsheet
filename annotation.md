@@ -149,6 +149,22 @@ Foo.NAVIGATE_INFO;
 Foo.prototype.info;
 ```
 
+```javascript
+/**
+ * Function returning "typedef". Property "style" can be string or null.
+ *
+ * @return {{link: string, href: string, style: (string|null)}}
+ */
+Foo.prototype.getLink = function() {
+	// ...
+	return {
+		link: 'Link',
+		href: 'http://...',
+		style: null
+	};
+}
+```
+
 ## Enum
 ```javascript
 /**
