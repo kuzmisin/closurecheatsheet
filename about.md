@@ -29,6 +29,7 @@ This page is definitely not a tutorial. It is considered to be a quick reference
 ## Other
 + [Grunt Plugins](http://gruntjs.com/plugins/closure)
 + [plovr: a Closure build tool](http://plovr.com/)
++ [Closureplease.com](http://closureplease.com) A community maintained resource for Closure.
 
 ## Book
 + <a href="http://www.amazon.com/gp/product/1449381871/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449381871&linkCode=as2&tag=kuzmisinsk-20">Closure: The Definitive Guide</a><img src="http://www.assoc-amazon.com/e/ir?t=kuzmisinsk-20&l=as2&o=1&a=1449381871" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
