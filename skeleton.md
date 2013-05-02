@@ -1,4 +1,6 @@
-## Directory structure
+## Basic
+
+### Directory structure
 ```
 .
 ├── bin
@@ -26,7 +28,7 @@
     └── index.html
 ```
 
-## BASH variables
+### BASH variables
 Relative to ```./bin``` directory
 ```bash
 PYTHON_BIN="python"
@@ -54,7 +56,7 @@ LANG="cs"
 LOCALE="cs_CZ"
 ```
 
-## index-devel.html
+### index-devel.html
 ```html
 <!doctype html>
 <html>
@@ -74,7 +76,7 @@ LOCALE="cs_CZ"
 </html>
 ```
 
-## index-prod.html
+### index-prod.html
 ```html
 <!doctype html>
 <html>
@@ -91,7 +93,7 @@ LOCALE="cs_CZ"
 ```
 
 
-## Deps
+### Deps
 Scan and generate ```./www/js/app-deps.js``` (dependencies) based on ```goog.provide()``` and ```goog.require()```
 
 ```bash
@@ -101,7 +103,7 @@ ${PYTHON_BIN} ${CLOSURE_BUILD_DIR}/depswriter.py \
 	--output_file=${JS_APP_DEPS}
 ```
 
-## Templates (soy)
+### Templates (soy)
 Find all templates ```*.soy``` and compile it to JS source.
 
 ```bash
@@ -114,7 +116,7 @@ java -jar ${CLOSURE_UTIL_DIR}/SoyToJsSrcCompiler.jar \
 	--srcs $(find ${TEMPLATE_DIR} -iname '*.soy' -type f -print0 | xargs -0 echo)
 ```
 
-## Messages
+### Messages
 Generate XTB translation file ```./www/js/app-messages.xtb```
 
 ```bash
@@ -132,7 +134,7 @@ ${PYTHON_BIN} ${CLOSURE_BUILD_DIR}/closurebuilder.py \
 	--compiler_flags="--lang=${LANG}"
 ```
 
-## Compile
+### Compile
 Compile application into ```./www/js/app-compiled/js```
 
 ```bash
@@ -152,7 +154,7 @@ ${PYTHON_BIN} ${CLOSURE_BUILD_DIR}/closurebuilder.py \
 	--output_file=${JS_APP_COMPILED}
 ```
 
-## Externs
+### Externs
 
 If you are using another JS lib in your application, you need to provide ```externs``` option to compiler. The file must contain annotation definition for each function, object, ...
 ```bash
@@ -166,7 +168,7 @@ ${PYTHON_BIN} ${CLOSURE_BUILD_DIR}/closurebuilder.py \
 
 Mostly used ```externs``` is already on [compiler externs](https://code.google.com/p/closure-compiler/source/browse/#git%2Fcontrib%2Fexterns)
 
-## Source map
+### Source map
 
 Generating source map (for debugging compiled application)
 ```bash
@@ -187,4 +189,29 @@ Add comment to end of ```./www/js/app-compiled.js```
 And fix path in source map (replace ```../www/``` to ```/```)
 ```bash
 %s/..\/www\//\//g
+```
+
+## Basic example
+Complete skeleton/example:
+
+1. Download [closure-example-bash.tar.gz](/files/closure-example-bash.tar.gz)
+
+2. Add Closure Library into ```www/js-closure```<br />(e.g.: run ```git clone https://code.google.com/p/closure-library/ www/js-closure```)
+
+Development:
+```bash
+# compile SOY templates - when you change SOY template
+./bin/build.sh soy
+
+# generate JS dependencies - when you add/change goog.require or goog.provide
+./bin/build.sh deps
+
+# generate messages - when you add/change goog.getMsg
+./bin/build.sh messages
+```
+
+Production:
+```bash
+# compile application - js/app-compiled.js
+./bin/build.sh build
 ```
