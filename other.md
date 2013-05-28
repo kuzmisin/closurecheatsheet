@@ -130,6 +130,21 @@ goog.string.whitespaceEscape(
 if (goog.userAgent.IE) {
 	// run away
 };
+
+/**
+ * Condition will be true for IE < 9.0
+ * @see goog.string.compareVersions
+ */
+if (goog.userAgent.IE && goog.userAgent.compare(9, goog.userAgent.VERSION) == 1) {
+	// run away even faster
+}
+
+/**
+ * Condition will be true for IE >= 10.0
+ */
+if (goog.userAgent.IE && goog.userAgent.isVersionOrHigher(10)) {
+	// ...
+}
 ```
 
 ## goog.typeOf
