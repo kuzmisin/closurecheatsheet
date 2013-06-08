@@ -170,7 +170,7 @@ Foo.prototype.getLink = function() {
 /**
  * @enum {string}
  */
-FOO.API = {
+Foo.Api = {
 	GET: '/get',
 	PUT: '/put'
 }
@@ -178,7 +178,7 @@ FOO.API = {
 /**
  * @enum {number}
  */
-FOO.DIRECTION = {
+Foo.Direction= {
 	UP: 1,
 	DOWN: 2
 }
