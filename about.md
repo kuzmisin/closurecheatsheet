@@ -5,7 +5,7 @@ This page is definitely not a tutorial. It is considered to be a quick reference
 
 ## Closure Library
 + https://developers.google.com/closure/library/
-+ ```git clone https://code.google.com/p/closure-library/```
++ ```git clone https://github.com/google/closure-library.git```
 + [Annotations](https://developers.google.com/closure/compiler/docs/js-for-compiler)
 + [Api reference](http://docs.closure-library.googlecode.com/git/index.html)
 + [Wiki](https://code.google.com/p/closure-library/w/list)
