@@ -1,4 +1,6 @@
 ## Soy
++ https://developers.google.com/closure/templates/docs/concepts
++ https://developers.google.com/closure/templates/docs/commands
 + https://code.google.com/p/closure-templates/source/browse/trunk/examples/simple.soy
 + https://code.google.com/p/closure-templates/source/browse/trunk/examples/features.soy
 
@@ -8,11 +10,10 @@
 
 /**
  * DOC
- *
- * @param p1
- * @param p2
  */
 {template .test}
+{@param p1: string}
+{@param p2: string}
 <div>{$p1}</div> // one line comment
 <div>{$p2}</div> /* block comment */
 {/template}
@@ -81,10 +82,9 @@ Value for b = {$b}
 ```
 /**
  * LOG example -> `window.console.log(...);`
- *
- * @param p1
  */
 {template .test}
+{@param p1: number}
 <div>...</div>
 {log}Value of p1 = {$p1}{/log}
 {/template}
@@ -104,9 +104,10 @@ Value for b = {$b}
 ### Directive (helpers)
 ```
 /**
- * @param p1
+ * Soy Directives.
  */
 {template .test}
+{@param p1: any}
 {$p1|noAutoescape}
 {$p1|escapeCssString}
 {$p1|filterCssValue}
@@ -130,11 +131,10 @@ Value for b = {$b}
 
 ```
 /**
- * assume p1 = "<div>content</div>"
- *
- * @param p1
+ * Assume p1 = "<div>content</div>"
  */
 {template .test}
+{@param p1: html}
 {$p1|cleanHtml} // shows only `content`
 {/template}
 ```
@@ -142,10 +142,9 @@ Value for b = {$b}
 ```
 /**
  * Assume p1 = "Test value"
- *
- * @param p1
  */
 {template .test}
+{@param p1: string}
 {$p1|truncate:4,false} // shows `Test`
 {$p1|truncate:4,true} // shows `T...`
 {/template}
@@ -154,10 +153,11 @@ Value for b = {$b}
 ### Function
 ```
 /**
- * @param p1 Dummy example parameter
- * @param p2 Dummy example parameter
+ * Soy Functions
  */
 {template .test}
+{@param p1: any} /** Dummy example parameter. */
+{@param p2: any} /** Dummy example parameter. */
 {augmentMap($p1, $p2)}
 {ceiling($p1)}
 {floor($p1)}
@@ -176,10 +176,9 @@ Value for b = {$b}
 ```
 /**
  * MSG-PLURAL example -> `goog.getMsg`, `goog.i18n.MessageFormat()`
- *
- * @param p1
  */
 {template .test}
+{@param p1: int}
 {msg desc="Test message"}
 	{plural $p1}
 		{case 1}
@@ -196,10 +195,9 @@ Value for b = {$b}
 ```
 /**
  * MSG-SELECT example -> `goog.getMsg`, goog.i18n.MessageFormat()`
- *
- * @param p1
  */
 {template .test}
+{@param p1: string}
 {msg desc="Test message"}
 	{select $p1}
 		{case 'male'}
@@ -237,6 +235,8 @@ app.helpers.sum = function(opt_data, opt_ignored) {
  * @param second
  */
 {template .test}
+{@param first: number}
+{@param second: number}
 <div>
 	Sum <em>{$first}</em> and <em>{$second}</em> is{sp}
 	<strong>
