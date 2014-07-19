@@ -231,8 +231,6 @@ app.helpers.sum = function(opt_data, opt_ignored) {
 
 /**
  * Calling function outside SOY
- * @param first
- * @param second
  */
 {template .test}
 {@param first: number}
