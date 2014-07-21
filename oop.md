@@ -176,9 +176,14 @@ app.Foo = function() {
 	goog.base(this);
 
 	this.element = goog.dom.getElement('bar');
+	this.button = goog.dom.createDom(goog.dom.TagName.BUTTON);
 	this.handler = new goog.events.EventHandler(this);
+
+	// Alternatively: Call goog.dispose(this.handler) in disposeInternal().
+	this.registerDisposable(this.handler);
 };
 
+// Alternatively: Inherit directly from: goog.events.EventHandler.
 goog.inherits(app.Foo, goog.Disposable);
 
 /**
@@ -187,6 +192,13 @@ goog.inherits(app.Foo, goog.Disposable);
  * @type {Element}
  */
 app.Foo.prototype.element;
+
+/**
+ * Reference to DOM object
+ *
+ * @type {!Element}
+ */
+app.Foo.prototype.button;
 
 /**
  * Another disposable object
@@ -201,9 +213,8 @@ app.Foo.prototype.handler;
  * @override
  */
 app.Foo.prototype.disposeInternal = function() {
-	this.handler.dispose();
-
-	this.element = null;
+	this.element = null;  // Preferred for nullable fields (faster).
+	delete this.button;  // Necessary for non-null fields.
 	this.handler = null;
 
 	goog.base(this, 'disposeInternal');
@@ -213,7 +224,7 @@ app.Foo.prototype.disposeInternal = function() {
 ```javascript
 var a = new app.Foo();
 // ...
-a.dispose();
+a.dispose();  // Alternatively: goog.dispose(a); which permits null/undefined.
 ```
 
 Monitoring disposable object
