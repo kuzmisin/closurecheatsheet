@@ -40,3 +40,16 @@ app.start = function() {
 // make app.start 'accessible' after ADVANCED_OPTIMIZATIONS
 goog.exportSymbol('app.start', app.start);
 ```
+
+## @export annotation
+```javascript
+goog.provide('app.start');
+
+/**
+ * Make {@code app.start} accessible after {@code ADVANCED_OPTIMIZATIONS}.
+ * @export
+ */
+app.start = function() {
+	// ...
+};
+```
