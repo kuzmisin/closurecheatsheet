@@ -29,7 +29,7 @@ app.Parent.prototype.doSomething = function(param) {
  * @extends {app.Parent}
  */
 app.Child = function(foo, bar) {
-	goog.base(this, foo); // call parent constructor
+	app.Child.base(this, 'constructor', foo); // call parent constructor
 	this.bar = bar;
 };
 
@@ -44,7 +44,7 @@ app.Child.prototype.bar;
  * @override
  */
 app.Child.prototype.doSomething = function(param) {
-	goog.base(this, 'doSomething', param); // call super doSomething
+	app.Child.base(this, 'doSomething', param); // call super doSomething
 
 	// ...
 };
@@ -146,7 +146,7 @@ app.Interface.prototype.interfaceFunction;
  * @implements {app.Interface}
  */
 app.Child = function() {
-	goog.base(this);
+	app.Child.base(this, 'constructor');
 };
 
 goog.inherits(app.Child, app.AParent)
@@ -173,7 +173,7 @@ app.Child.prototype.interfaceFunction = function() {
  * @extends {goog.Disposable}
  */
 app.Foo = function() {
-	goog.base(this);
+	app.Foo.base(this, 'constructor');
 
 	// non-disposable object (NOT @extends goog.Disposable)
 	this.element = goog.dom.getElement('bar');
@@ -222,7 +222,7 @@ app.Foo.prototype.disposeInternal = function() {
 	this.handler = null;
 
 	// dispose all disposable object registered as this.registerDisposable()
-	goog.base(this, 'disposeInternal');
+	app.Foo.base(this, 'disposeInternal');
 };
 ```
 
