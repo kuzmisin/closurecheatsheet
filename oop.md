@@ -175,15 +175,18 @@ app.Child.prototype.interfaceFunction = function() {
 app.Foo = function() {
 	goog.base(this);
 
+	// non-disposable object (NOT @extends goog.Disposable)
 	this.element = goog.dom.getElement('bar');
 	this.button = goog.dom.createDom(goog.dom.TagName.BUTTON);
+
+	// disposable objects (@extends goog.Disposable)
 	this.handler = new goog.events.EventHandler(this);
 
+	// register for dispose in disposeInternal()
 	// Alternatively: Call goog.dispose(this.handler) in disposeInternal().
 	this.registerDisposable(this.handler);
 };
 
-// Alternatively: Inherit directly from: goog.events.EventHandler.
 goog.inherits(app.Foo, goog.Disposable);
 
 /**
@@ -213,10 +216,12 @@ app.Foo.prototype.handler;
  * @override
  */
 app.Foo.prototype.disposeInternal = function() {
+	// cleanup
 	this.element = null;  // Preferred for nullable fields (faster).
 	delete this.button;  // Necessary for non-null fields.
 	this.handler = null;
 
+	// dispose all disposable object registered as this.registerDisposable()
 	goog.base(this, 'disposeInternal');
 };
 ```
