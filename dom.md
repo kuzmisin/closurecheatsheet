@@ -369,54 +369,77 @@ goog.dom.forms.setValue = function(el, opt_value) {}
 goog.dom.forms.setValue(form.elements['text'], 'new text');
 ```
 
-## Class
+## ClassList
 
-### goog.dom.classes.add
+### goog.dom.classlist.add, goog.dom.classlist.addAll
 ```javascript
 /**
- * Adds a class or classes to an element. Does not add multiples of class names.
- * @param {Node} element DOM node to add class to.
- * @param {...string} var_args Class names to add.
- * @return {boolean} Whether class was added (or all classes were added).
+ * Adds a class to an element.  Does not add multiples of class names.  This
+ * method may throw a DOM exception for an invalid or empty class name if
+ * DOMTokenList is used.
+ * @param {Element} element DOM node to add class to.
+ * @param {string} className Class name to add.
  */
-goog.dom.classes.add = function(element, var_args) {}
+goog.dom.classlist.add = function(element, className) {}
+
+/**
+ * Convenience method to add a number of class names at once.
+ * @param {Element} element The element to which to add classes.
+ * @param {goog.array.ArrayLike.<string>} classesToAdd An array-like object
+ * containing a collection of class names to add to the element.
+ * This method may throw a DOM exception if classesToAdd contains invalid
+ * or empty class names.
+ */
+goog.dom.classlist.addAll = function(element, classesToAdd) {}
 ```
 
 ```javascript
 var container = goog.dom.getElement('container');
-goog.dom.classes.add(container, 'cls1', 'cls2');
+goog.dom.classlist.add(container, 'cls1');
 ```
 
-### goog.dom.classes.get
+### goog.dom.classlist.get
 ```javascript
 /**
- * Gets an array of class names on an element
- * @param {Node} element DOM node to get class of.
- * @return {!Array} Class names on element.
+ * Gets an array-like object of class names on an element.
+ * @param {Element} element DOM node to get the classes of.
+ * @return {!goog.array.ArrayLike} Class names on {@code element}.
  */
-goog.dom.classes.get = function(element) {}
+goog.dom.classlist.get = function(element) {
 ```
 
 ```javascript
 var container = goog.dom.getElement('container');
-var classes = goog.dom.classes.get(container);
+var classes = goog.dom.classlist.get(container);
 // classes ['class1', 'class2']
 ```
 
-### goog.dom.classes.remove
+### goog.dom.classlist.remove, goog.dom.classlist.removeAll
 ```javascript
 /**
- * Removes a class or classes from an element.
- * @param {Node} element DOM node to remove class from.
- * @param {...string} var_args Class name(s) to remove.
- * @return {boolean} Whether all classes in var_args were found and removed.
+ * Removes a class from an element.  This method may throw a DOM exception
+ * for an invalid or empty class name if DOMTokenList is used.
+ * @param {Element} element DOM node to remove class from.
+ * @param {string} className Class name to remove.
  */
-goog.dom.classes.remove = function(element, var_args) {}
+goog.dom.classlist.remove = function(element, className) {}
+
+/**
+ * Removes a set of classes from an element.  Prefer this call to
+ * repeatedly calling {@code goog.dom.classlist.remove} if you want to remove
+ * a large set of class names at once.
+ * @param {Element} element The element from which to remove classes.
+ * @param {goog.array.ArrayLike.<string>} classesToRemove An array-like object
+ * containing a collection of class names to remove from the element.
+ * This method may throw a DOM exception if classesToRemove contains invalid
+ * or empty class names.
+ */
+goog.dom.classlist.removeAll = function(element, classesToRemove) {}
 ```
 
 ```javascript
 var container = goog.dom.getElement('container');
-goog.dom.classes.remove(container, 'cls1');
+goog.dom.classlist.remove(container, 'cls1');
 ```
 
 ## Style
