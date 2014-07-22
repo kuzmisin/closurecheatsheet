@@ -42,6 +42,9 @@ goog.exportSymbol('app.start', app.start);
 ```
 
 ## @export annotation
+
+When using the `@export` annotation, be certain that you use the `--generate_exports` compiler flag.
+
 ```javascript
 goog.provide('app.start');
 
