@@ -13,8 +13,8 @@ This page is definitely not a tutorial. It is considered to be a quick reference
 ## Compiler
 
 + https://developers.google.com/closure/compiler/
-+ https://code.google.com/p/closure-compiler/
-+ [Download](http://closure-compiler.googlecode.com/files/compiler-latest.zip)
++ https://github.com/google/closure-compiler
++ [Download](http://dl.google.com/closure-compiler/compiler-latest.zip)
 + [Annotation reference](https://developers.google.com/closure/compiler/docs/js-for-compiler)
 + [Error and Warning Reference](https://developers.google.com/closure/compiler/docs/error-ref)
     
