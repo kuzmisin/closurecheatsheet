@@ -1,5 +1,5 @@
 ## goog.provide
-```app/some.js```
+file: `app/some.js`
 ```javascript
 goog.provide('app.Some');
 
@@ -12,7 +12,7 @@ app.Some = function() {
 ```
 
 ## goog.require
-```app/other.js```
+file: `app/other.js`
 ```javascript
 goog.provide('app.Other');
 
