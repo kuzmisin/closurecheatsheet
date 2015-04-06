@@ -1,8 +1,8 @@
 ## Soy
 + https://developers.google.com/closure/templates/docs/concepts
 + https://developers.google.com/closure/templates/docs/commands
-+ https://code.google.com/p/closure-templates/source/browse/trunk/examples/simple.soy
-+ https://code.google.com/p/closure-templates/source/browse/trunk/examples/features.soy
++ https://github.com/google/closure-templates/tree/master/examples/simple.soy
++ https://github.com/google/closure-templates/tree/master/examples/features.soy
 
 ### Basic
 ```

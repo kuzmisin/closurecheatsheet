@@ -166,7 +166,7 @@ ${PYTHON_BIN} ${CLOSURE_BUILD_DIR}/closurebuilder.py \
 	...
 ```
 
-Mostly used ```externs``` is already on [compiler externs](https://code.google.com/p/closure-compiler/source/browse/#git%2Fcontrib%2Fexterns)
+Mostly used ```externs``` is already on [compiler externs](https://github.com/google/closure-compiler/tree/master/contrib/externs)
 
 ### Source map
 
@@ -196,7 +196,7 @@ Complete skeleton/example:
 
 1. Download [closure-example-bash.tar.gz](/files/closure-example-bash.tar.gz)
 
-2. Add Closure Library into ```www/js-closure```<br />(e.g.: run ```git clone https://code.google.com/p/closure-library/ www/js-closure```)
+2. Add Closure Library into ```www/js-closure```<br />(e.g.: run ```git clone https://github.com/google/closure-library.git www/js-closure```)
 
 Development:
 ```bash
