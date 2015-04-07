@@ -17,10 +17,10 @@ This page is definitely not a tutorial. It is considered to be a quick reference
 + [Download](http://dl.google.com/closure-compiler/compiler-latest.zip)
 + [Annotation reference](https://developers.google.com/closure/compiler/docs/js-for-compiler)
 + [Error and Warning Reference](https://developers.google.com/closure/compiler/docs/error-ref)
-    
+
 ## Templates
 + https://developers.google.com/closure/templates/
-+ https://code.google.com/p/closure-templates/
++ https://github.com/google/closure-templates
 + [Download](https://closure-templates.googlecode.com/files/closure-templates-for-javascript-latest.zip)
 
 ## XtbGenerator
