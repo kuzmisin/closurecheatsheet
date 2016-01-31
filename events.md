@@ -103,6 +103,8 @@ By extending `EventHandler`, event handlers will have the same lifecycle as the 
 
 This approach also avoids the need for using `goog.bind` on the event method, or having to pass `this` as parameter to `listen()`.
 
+**Do not forget** to call `object.dispose()` for cleanup (destructing object). Dispose method will also remove all listeners.
+
 ```javascript
 /**
  * Example {@code EventHandler} class.
@@ -115,12 +117,20 @@ app.Foo = function() {
 
 	var container = goog.dom.getRequiredElement('container');
 
-	// this.listenOnce() is also useful.
-	this.listen(container, goog.events.EventType.CLICK, this.handleClick_);
+	// listen for CLICK -> handled by this.handleClick_ 
+	// note: this.listenOnce() is also useful.
+	this.listen(
+		container,
+		goog.events.EventType.CLICK, 
+		this.handleClick_
+	);
+
+	// listen for MOUSEOVER, MOUSEOUT -> handled by this.handleMouseEvent_
 	this.listen(
 		container,
 		[goog.events.EventType.MOUSEOVER, goog.events.EventType.MOUSEOUT],
-		this.handleMouseEvent_);
+		this.handleMouseEvent_
+	);
 };
 goog.inherits(app.Foo, goog.events.EventHandler);
 
