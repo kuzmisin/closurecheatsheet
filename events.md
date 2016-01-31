@@ -98,73 +98,47 @@ goog.events.unlisten(
 ## Event Handler
 
 ### goog.events.EventHandler
+
+By extending `EventHandler`, event handlers will have the same lifecycle as the object. (As opposed to `goog.events.listen` which ties event handler lifecycle to the element.) When instances of an `EventHandler` class are disposed, the event handlers are removed, even if the element is still present in the DOM.
+
+This approach also avoids the need for using `goog.bind` on the event method, or having to pass `this` as parameter to `listen()`.
+
 ```javascript
 /**
+ * Example {@code EventHandler} class.
  * @constructor
- * @extends {goog.Disposable}
+ * @extends {goog.events.EventHandler}
+ * @final
  */
 app.Foo = function() {
-	goog.base(this);
+	app.Foo.base(this, 'constructor');
 
-	var container = goog.dom.getElement('container');
+	var container = goog.dom.getRequiredElement('container');
 
-	// handled by this.handleClick_
-	this.getHandler().listen(
-		container,
-		goog.events.EventType.CLICK,
-		this.handleClick_
-	);
-	// handled by this.handleEvent
-	this.getHandler().listen(
+	// this.listenOnce() is also useful.
+	this.listen(container, goog.events.EventType.CLICK, this.handleClick_);
+	this.listen(
 		container,
 		[goog.events.EventType.MOUSEOVER, goog.events.EventType.MOUSEOUT],
-		this
-	);
+		this.handleMouseEvent_);
 };
+goog.inherits(app.Foo, goog.events.EventHandler);
 
-goog.inherits(app.Foo, goog.Disposable);
-
-/**
- * @type {goog.events.EventHandler}
- */
-app.Foo.prototype.handler_;
 
 /**
- * Create/return EventHandler which has default SCOPE to THIS.
- *
- * Another usefully EventHandler function:
- *		- listenOnce
- *		- unlisten
- *		- removeAll
- *
- * @returns {goog.events.EventHandler}
+ * Handles mouse being hovered over container.
+ * @param {!goog.events.BrowserEvent} e
+ * @private
  */
-app.Foo.prototype.getHandler = function() {
-	return this.handler_ || (this.handler_ = new goog.events.EventHandler(this));
-};
-
-/**
- * @override
- */
-app.Foo.prototype.disposeInternal = function() {
-	if (this.handler_) {
-		this.handler_.dispose();
-		this.handler_ = null;
-	}
-
-	goog.base(this, 'disposeInternal');
-};
-
-/**
- * @param {goog.events.Event} e
- */
-app.Foo.prototype.handleEvent = function(e) {
-	var type = e.type;
+app.Foo.prototype.handleMouseEvent_ = function(e) {
+	var type = e.type;  // e.g. goog.events.EventType.MOUSEOVER
 	// ...
 };
 
+
 /**
- * @param {goog.events.Event} e
+ * Handles container being clicked.
+ * @param {!goog.events.BrowserEvent} e
  * @private
  */
 app.Foo.prototype.handleClick_ = function(e) {
